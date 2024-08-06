@@ -1,6 +1,6 @@
 from pydantic import BaseModel
 from typing import List
-from app.schemas.order import Order
+from app.models.order_model import Order
 
 class PizzaBase(BaseModel):
     name: str
