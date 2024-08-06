@@ -11,7 +11,7 @@ class Order(Base):
     pizza_id = Column(Integer, ForeignKey('pizzas.id'))
     quantity = Column(Integer)
     status = Column(String, default="Pending")
-    order_date = Column(DateTime, default=datetime.utcnow)
+    order_date = Column(DateTime, default=datetime.now)
     delivery_address = Column(String)
     
     user = relationship("User", back_populates="orders")
