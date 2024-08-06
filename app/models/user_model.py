@@ -1,7 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List
 from datetime import datetime
-from app.schemas.order import Order
+from app.models.order_model import Order
 
 class UserBase(BaseModel):
     username: str
