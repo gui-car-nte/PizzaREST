@@ -1,11 +1,9 @@
 from pydantic import BaseModel
-from typing import List
-from app.models.order_model import Order
 
 class PizzaBase(BaseModel):
     name: str
     ingredients: str
-    price: float
+    price: int
     preparation_time: int
 
 class PizzaCreate(PizzaBase):
@@ -13,7 +11,7 @@ class PizzaCreate(PizzaBase):
 
 class PizzaUpdate(BaseModel):
     ingredients: str
-    price: float
+    price: int
     preparation_time: int
 
 class PizzaInDBBase(PizzaBase):
@@ -25,5 +23,3 @@ class PizzaInDBBase(PizzaBase):
 class Pizza(PizzaInDBBase):
     pass
 
-class PizzaWithOrders(PizzaInDBBase):
-    orders: List[Order]

@@ -1,7 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List
-from datetime import datetime
-from app.models.order_model import Order
+from app.models.order_model import Order  
 
 class UserBase(BaseModel):
     username: str
@@ -28,7 +27,8 @@ class User(UserInDBBase):
     pass
 
 class UserWithOrders(UserInDBBase):
-    orders: List[Order]  
+    orders: List[Order]
 
 class UserInDB(UserInDBBase):
     hashed_password: str
+
