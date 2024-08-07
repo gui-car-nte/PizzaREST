@@ -1,21 +1,18 @@
 from sqlalchemy.orm import Session
 from app.models import user_model, user_schema
+from app.services.auth_service import hash_password
 
 def create_user(db: Session, user: user_model.UserCreate):
+    hashed_password = hash_password(user.password)
     db_user = user_schema.User(
         username=user.username,
+        hashed_password=hashed_password,
         email=user.email,
         phone_number=user.phone_number,
-        address=user.address,
-        password=user.password,
+        address=user.address
     )
     db.add(db_user)
     db.commit()
     db.refresh(db_user)
     return db_user
 
-def authenticate_user(db: Session, username: str, password: str):
-    user = db.query(user_schema.User).filter(user_schema.User.username == username).first()
-    if user and user.password == password: # type: ignore # TODO check what is causing this warning
-        return user
-    return None

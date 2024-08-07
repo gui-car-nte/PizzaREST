@@ -30,5 +30,5 @@ class UserWithOrders(UserInDBBase):
     orders: List[Order]
 
 class UserInDB(UserInDBBase):
-    password: str
+    hashed_password: str
 
