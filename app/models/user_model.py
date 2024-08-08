@@ -1,6 +1,6 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List
-from app.models.order_model import Order  
+# from .order_model import Order  
 
 class UserBase(BaseModel):
     username: str
@@ -21,13 +21,13 @@ class UserInDBBase(UserBase):
     is_admin: bool
 
     class Config:
-        orm_mode = True
+        orm_mode = True # ! obsolete, from_atribute=True
 
 class User(UserInDBBase):
     pass
 
-class UserWithOrders(UserInDBBase):
-    orders: List[Order]
+# class UserWithOrders(UserInDBBase):
+#     orders: List[Order]
 
 class UserInDB(UserInDBBase):
     hashed_password: str

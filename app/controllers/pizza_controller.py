@@ -6,7 +6,7 @@ from app.database.connection import get_db
 
 router = APIRouter()
 
-@router.post("/", response_model = pizza_schema.Pizza)
+@router.post("/", response_model = pizza_model.Pizza)
 def create_pizza(pizza: pizza_model.PizzaCreate):
     db: Session = get_db()
     try:
@@ -14,7 +14,7 @@ def create_pizza(pizza: pizza_model.PizzaCreate):
     finally:
         db.close()
 
-@router.get("/", response_model = list[pizza_schema.Pizza])
+@router.get("/", response_model = list[pizza_model.Pizza])
 def list_pizzas():
     db: Session = get_db()
     try:

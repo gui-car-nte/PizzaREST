@@ -1,7 +1,7 @@
 from pydantic import BaseModel
 from typing import List
 from datetime import datetime
-from models.user_model import User
+from .user_model import User, UserInDBBase
 
 class OrderBase(BaseModel):
     user_id: int
@@ -27,3 +27,6 @@ class Order(OrderInDBBase):
 
 class OrderWithUser(OrderInDBBase):
     user: User 
+    
+class UserWithOrders(UserInDBBase):
+    orders: List[Order]

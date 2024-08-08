@@ -6,7 +6,7 @@ from app.database.connection import get_db
 
 router = APIRouter()
 
-@router.post("/", response_model=order_schema.Order)
+@router.post("/", response_model=order_model.Order)
 def create_order(order: order_model.OrderCreate):
     db: Session = get_db()
     try:

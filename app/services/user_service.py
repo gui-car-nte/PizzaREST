@@ -2,6 +2,11 @@ from sqlalchemy.orm import Session
 from app.models import user_model, user_schema
 from app.services.auth_service import hash_password
 
+def get_user(db: Session):
+    with db as data:
+        db_user = data.query(user_schema.User).all()
+        return db_user
+
 def create_user(db: Session, user: user_model.UserCreate):
     hashed_password = hash_password(user.password)
     db_user = user_schema.User(
