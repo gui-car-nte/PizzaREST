@@ -10,6 +10,7 @@ class OrderBase(BaseModel):
     pizza_details: str
 
 class OrderCreate(OrderBase):
+    id: int
     pass
 
 class OrderUpdate(BaseModel):
