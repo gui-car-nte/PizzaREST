@@ -21,7 +21,7 @@ class UserInDBBase(UserBase):
     is_admin: bool
 
     class Config:
-        orm_mode = True # ! obsolete, from_atribute=True
+        from_attributes = True
 
 class User(UserInDBBase):
     pass

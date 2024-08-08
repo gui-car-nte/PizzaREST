@@ -20,7 +20,7 @@ class OrderInDBBase(OrderBase):
     id: int
 
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class Order(OrderInDBBase):
     pass
