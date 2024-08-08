@@ -1,6 +1,5 @@
 from pydantic import BaseModel, EmailStr
 from typing import Optional, List
-# from .order_model import Order  
 
 class UserBase(BaseModel):
     username: str
@@ -25,9 +24,6 @@ class UserInDBBase(UserBase):
 
 class User(UserInDBBase):
     pass
-
-# class UserWithOrders(UserInDBBase):
-#     orders: List[Order]
 
 class UserInDB(UserInDBBase):
     hashed_password: str
