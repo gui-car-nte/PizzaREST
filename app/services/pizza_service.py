@@ -6,10 +6,10 @@ from models import pizza_schema as PizzaSchema
 def create_pizza(db: Session, pizza: Pizza.PizzaCreate):
     try:
         db_pizza = PizzaSchema.Pizza(
-            name=pizza.name,
-            ingredients=pizza.ingredients,
-            price=pizza.price,
-            preparation_time=pizza.preparation_time,
+            name = pizza.name,
+            ingredients = pizza.ingredients,
+            price = pizza.price,
+            preparation_time = pizza.preparation_time,
         )
         db.add(db_pizza)
         db.commit()

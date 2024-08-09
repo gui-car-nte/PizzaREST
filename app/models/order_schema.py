@@ -5,7 +5,7 @@ from app.database.connection import Base
 class Order(Base):
     __tablename__ = "orders"
 
-    id = Column(Integer, primary_key = True, index = True, autoincrement=True)
+    id = Column(Integer, primary_key = True, index = True, autoincrement = True)
     user_id = Column(Integer, ForeignKey("users.id"))
     date = Column(DateTime)
     delivery_info = Column(String)

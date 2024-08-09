@@ -13,7 +13,7 @@ def create_pizza(pizza: Pizza.PizzaCreate):
         return PizzaService.create_pizza(db = db, pizza = pizza)
     except Exception as e:
         db.rollback()
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail = str(e))
+        raise HTTPException(status_code = status.HTTP_400_BAD_REQUEST, detail = str(e))
 
 
 @router.get("/", response_model = list[Pizza.Pizza])
@@ -30,6 +30,6 @@ async def get_pizza_by_id(pizza_id: int):
     try:
         return await PizzaService.get_pizza_by_id(db = db, pizza_id = pizza_id)
     except ValueError as ve:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail = str(ve))
+        raise HTTPException(status_code = status.HTTP_404_NOT_FOUND, detail = str(ve))
     except Exception as e:
-        raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR, detail = str(e))
+        raise HTTPException(status_code = status.HTTP_500_INTERNAL_SERVER_ERROR, detail = str(e))
