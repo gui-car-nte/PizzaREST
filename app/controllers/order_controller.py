@@ -1,34 +1,27 @@
 from fastapi import APIRouter, HTTPException, status
 from sqlalchemy.orm import Session
-from app.models import order_model as Order
-from app.services import order_service as OrderService
-from app.database.connection import get_db
+from models import order_model as Order
+from services import order_service as OrderService
+from database.connection import get_db
 
 router = APIRouter()
 
 
-@router.post("/", response_model = Order.OrderCreate)
-def create_order(order: Order.Order):
+@router.post("/", response_model = Order.Order) 
+def create_order_endpoint(order: Order.OrderCreate):
     db: Session = get_db()
-    try:
-        return OrderService.create_order(db = db, order = order)
-    finally:
-        db.close()
+    return OrderService.create_order(db = db, order = order)
 
 
 @router.get("/{order_id}", response_model = Order.OrderWithUser)
 def get_order(order_id: int):
     db: Session = get_db()
-    try:
-        return OrderService.get_order_by_id(db = db, order_id = order_id)
-    finally:
-        db.close()
+    return OrderService.get_order_by_id(db = db, order_id = order_id)
 
 
 @router.put("/{order_id}/delivery_info", response_model = Order.Order)
 async def update_order_delivery_info(order_id: int, delivery_info: str):
     try:
-
         db: Session = get_db()
         updated_order = await OrderService.update_order_delivery_info(db, order_id, delivery_info)
         

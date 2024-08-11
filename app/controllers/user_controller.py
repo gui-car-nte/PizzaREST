@@ -14,16 +14,17 @@ async def get_users():
 
 
 @router.post("/", response_model = User.User)
-def create_user(user: User.UserCreate):
+async def create_user(user: User.UserCreate):
     db: Session = get_db()
-    return UserService.create_user(db = db, user = user)
+    result = await UserService.create_user(db = db, user = user)
+    return result
 
 
 @router.put("/", response_model = User.UserUpdate)
 async def update_user_info(user_update: User.UserUpdate, request: Request):
     try:
         db = get_db()
-        user_id = Auth_Service.get_user_by_cookie(request)
+        user_id = Auth_Service.get_user_id_by_cookie(request)
         user = await UserService.get_user_by_id(db, int(user_id))
         
         if user is None:
