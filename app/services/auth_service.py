@@ -12,7 +12,7 @@ def verify_password(plain_password: str, hashed_password: str) -> bool:
     return hash_password(plain_password) == hashed_password
 
 
-def get_user_by_cookie(request: Request) -> int:
+def get_user_id_by_cookie(request: Request) -> int:
     try:
         session_id = request.cookies.get("session_id")
         

@@ -5,12 +5,11 @@ from .user_model import User, UserInDBBase
 
 class OrderBase(BaseModel):
     user_id: int
-    date: datetime
+    date: datetime = datetime.now()
     delivery_info: str
     pizza_details: str
 
 class OrderCreate(OrderBase):
-    id: int
     pass
 
 class OrderUpdate(BaseModel):

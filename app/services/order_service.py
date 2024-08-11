@@ -1,11 +1,12 @@
 from sqlalchemy.orm import Session
-from models.order_model import Order
+from datetime import datetime
+from models.order_model import Order, OrderCreate
 from models.order_schema import Order as OrderSchema
 
-def create_order(db: Session, order: Order):
+def create_order(db: Session, order: OrderCreate):
     db_order = OrderSchema(
         user_id = order.user_id,
-        date = order.date,
+        date = order.date or datetime.now(),
         delivery_info = order.delivery_info,
         pizza_details = order.pizza_details,
     )
